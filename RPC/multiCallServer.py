@@ -3,6 +3,12 @@ import re
 import collections
 def add(x, y):
     return x + y
+
+temp=[]
+temp_count=[]
+
+def OpenFile():
+
 def SplitElementTxt():
     buka = open('cron.txt')
     temp = []
@@ -15,9 +21,8 @@ def SplitElementTxt():
     f = open("cron-copy.txt", 'wb')
     f.writelines(temp)
     buka.close()
-temp=[]
-temp_count=[]
-so =[]
+
+
 def SortCount():
     with open('cron-copy.txt') as infile:
         counts = collections.Counter(l.strip() for l in infile)
