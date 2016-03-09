@@ -138,7 +138,7 @@ def datakirim():
 
 
 
-server = SimpleXMLRPCServer(("localhost", 8000), allow_none=True)
+server = SimpleXMLRPCServer(("192.168.88.47", 8000), allow_none=True)
 print "Listening on port 8000 ... "
 server.register_multicall_functions()
 
