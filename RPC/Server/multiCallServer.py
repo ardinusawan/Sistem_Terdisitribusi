@@ -10,6 +10,9 @@ tempoftemp = []
 tempoftimec = []
 hit = 0
 flag=0
+nama_server="DWI_SERVER"
+IP_Manager="192.168.88.79"
+PORT_Manager=8000
 # folder_hasil_computasi="Hasil_Computasi/"
 def SplitElementTxt(ofile):
     global folder_hasil_computasi, flag, temp3, hit, tempc, tempoftemp, tempoftimec
@@ -36,6 +39,7 @@ def SplitElementTxt(ofile):
         temp_count.append(count)
         # return line, count
     infile.close()
+    f.close()
     #tempoftemp.append([temp2, temp_count])
     #buka2 = open(ofile)
     '''
@@ -99,7 +103,7 @@ def SplitElementTxt(ofile):
     buka2 = open(ofile)
     fmt = '%-8s%-20s%s'
     print(fmt % ('',  'Frequent','Command'))
-    fole = open("server1.txt", 'w')
+    fole = open(nama_server, 'w')
     # fole = open(folder_hasil_computasi +  "server1.txt", 'w')
     for i, (name, grade) in enumerate(zip(tempc,temp3)):
         #print(fmt % (i, name, grade))
@@ -108,7 +112,7 @@ def SplitElementTxt(ofile):
         fole.write(data3+"\n")
 
     buka2.close()
-
+    fole.close()
 
     '''
     zipp = zip (temp3, tempc)
@@ -135,14 +139,14 @@ def SortCount():
     return temp, temp_count
 '''
 def datakirim():
-    with open("server1.txt", "rb") as handle:
+    with open(nama_server, "rb") as handle:
     # with open(folder_hasil_computasi + "server1.txt", "rb") as handle:
         return xmlrpclib.Binary(handle.read())
 
 
 
 
-server = SimpleXMLRPCServer(("192.168.88.79", 8000), allow_none=True)
+server = SimpleXMLRPCServer((IP_Manager, PORT_Manager), allow_none=True)#ganti ke IP manager
 print "Listening on port 8000 ... "
 server.register_multicall_functions()
 

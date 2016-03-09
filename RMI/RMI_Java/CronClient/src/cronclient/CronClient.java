@@ -13,7 +13,7 @@ public class CronClient {
 
     public static void main(String[] args) {
         try{
-            Registry myReg = LocateRegistry.getRegistry("127.0.0.1",1099);
+            Registry myReg = LocateRegistry.getRegistry("192.168.88.79",1099);
             CronDecodeInterface c = (CronDecodeInterface)myReg.lookup("mycron");
             
             File dir = new File("E:\\ITS\\KULIAH\\SEMESTER 6\\SISTER\\cron");
