@@ -1,11 +1,12 @@
 __author__ = 'Indra Gunawan'
 import xmlrpclib
+"""
 def unzip(args):
-    """
+
     inverse of zip. Given: ((1,"a"),(2,"b")) --> ((1,2),("a","b"))
 
     seq == unzip(zip(seq)) if seq is a rectangular matrix (all of its row has the same length.
-    """
+
     result = []
     n = min(map(len,args))
     for i in range(n):result.append([])
@@ -13,9 +14,9 @@ def unzip(args):
         for j in range(n):
             result[j].append(args[i][j])
     return tuple(result)
+"""
 
-
-proxy = xmlrpclib.ServerProxy("http://localhost:8000/", allow_none=True)
+proxy = xmlrpclib.ServerProxy("http://localhost:8000/")
 #proxy2 = xmlrpclib.ServerProxy("http://localhost:8000/", allow_none=True)
 multicall = xmlrpclib.MultiCall(proxy)
 #multicall.add(2, 3)
@@ -32,6 +33,8 @@ multicall.SplitElementTxt("cron.2")
 #multicall.SortCount()
 ##server mendapatkan return value
 result = multicall()
+
+
 # for i in range((result)):
 #     x,y=zip(*result)
 # xy=(list(x),list(y))
@@ -48,6 +51,8 @@ result = multicall()
 # zip(result)
 # print tuple(zip(result))
 print tuple(result)
+with open("fetched_python_data.txt", "wb") as handle:
+    handle.write(proxy.datakirim().data)
 #multicall.SplitElementTxt("coba.txt")
 #multicall.SortCount()
 ##server mendapatkan return value

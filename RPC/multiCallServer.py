@@ -1,9 +1,9 @@
 __author__ = 'Indra Gunawan'
 from SimpleXMLRPCServer import SimpleXMLRPCServer
+import xmlrpclib
 import re
 import collections
-def add(x, y):
-    return x + y
+
 temp3=[]
 tempc=[]
 tempoftemp = []
@@ -31,7 +31,7 @@ def SplitElementTxt(ofile):
         # return line, count
     infile.close()
     #tempoftemp.append([temp2, temp_count])
-    buka2 = open(ofile)
+    #buka2 = open(ofile)
     '''
     fmt = '%-8s%-20s%s'
     print(fmt % ('',  'Frequent','Command'))
@@ -90,14 +90,29 @@ def SplitElementTxt(ofile):
                 tempc.append(tempoftempc[i])
             cek = 0
 
+    buka2 = open(ofile)
+    fmt = '%-8s%-20s%s'
+    print(fmt % ('',  'Frequent','Command'))
+    fole = open("server1.txt", 'w')
+    for i, (name, grade) in enumerate(zip(tempc,temp3)):
+        #print(fmt % (i, name, grade))
+        data3 = fmt % (i, name, grade)
+        #print data3
+        fole.write(data3+"\n")
+
+    buka2.close()
+
+
+    '''
     zipp = zip (temp3, tempc)
 
     flag+=1
     if(flag%3):
         print zipp
         return zipp
-    print flag;
 
+    print flag;
+    '''
 
 '''
 def SortCount():
@@ -112,13 +127,18 @@ def SortCount():
     infile.close()
     return temp, temp_count
 '''
+def datakirim():
+    with open("server1.txt", "rb") as handle:
+        return xmlrpclib.Binary(handle.read())
+
 
 
 
 server = SimpleXMLRPCServer(("localhost", 8000), allow_none=True)
 print "Listening on port 8000 ... "
 server.register_multicall_functions()
-server.register_function(add, "add")
+
 server.register_function(SplitElementTxt,"SplitElementTxt")
+server.register_function(datakirim, "datakirim")
 #server.register_function(SortCount,"SortCount")
 server.serve_forever()
