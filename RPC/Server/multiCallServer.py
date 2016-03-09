@@ -11,7 +11,7 @@ tempoftimec = []
 hit = 0
 flag=0
 nama_server="DWI_SERVER"
-IP_Manager="192.168.88.79"
+IP_Server="192.168.88.79"
 PORT_Manager=8000
 # folder_hasil_computasi="Hasil_Computasi/"
 def SplitElementTxt(ofile):
