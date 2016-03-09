@@ -12,6 +12,8 @@ multicall = xmlrpclib.MultiCall(proxy)
 ##server membagi tugas
 
 multicall.SplitElementTxt("cron")
+multicall.SplitElementTxt("cron.1")
+multicall.SplitElementTxt("cron.2")
 #multicall.SortCount()
 ##server mendapatkan return value
 result = multicall()

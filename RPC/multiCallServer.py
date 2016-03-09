@@ -2,7 +2,8 @@ __author__ = 'Indra Gunawan'
 from SimpleXMLRPCServer import SimpleXMLRPCServer
 import re
 import collections
-
+def add(x, y):
+    return x + y
 
 def SplitElementTxt(ofile):
     temp=[]
@@ -28,11 +29,19 @@ def SplitElementTxt(ofile):
     for n,g in zip(temp,temp_count):
         print n + '\t\t\t' + g
     '''
+    buka2 = open(ofile)
     fmt = '%-8s%-20s%s'
 
     print(fmt % ('',  'Frequent','Command'))
+    fole = open("server1.txt", 'a')
     for i, (name, grade) in enumerate(zip(temp_count,temp2)):
-        print(fmt % (i, name, grade))
+        #print(fmt % (i, name, grade))
+        data3 = fmt % (i, name, grade)
+        print data3
+        fole.write(data3+"\n")
+
+    buka2.close()
+
     #lola = temp + " "
     #lolu = lola + str(temp_count)
     #return lolu
