@@ -12,14 +12,14 @@ def SplitElementTxt():
     for i, line in enumerate(buka):
         lol = re.split("\W+", line, 8)
         temp.append('(' + lol[8])
-    f = open("cront-copy.txt", 'wb')
+    f = open("cron-copy.txt", 'wb')
     f.writelines(temp)
     buka.close()
 temp=[]
 temp_count=[]
 so =[]
 def SortCount():
-    with open('cront-copy.txt') as infile:
+    with open('cron-copy.txt') as infile:
         counts = collections.Counter(l.strip() for l in infile)
     for line, count in counts.most_common():
         temp.append(line)
