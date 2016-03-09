@@ -1,1 +1,1 @@
-ini adalah khusus RPC mencoba client server
+ini adalah khusus RPC
