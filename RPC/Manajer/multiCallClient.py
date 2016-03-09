@@ -15,25 +15,26 @@ def unzip(args):
             result[j].append(args[i][j])
     return tuple(result)
 """
-
-proxy = xmlrpclib.ServerProxy("http://192.168.88.79:8000/")
-#proxy2 = xmlrpclib.ServerProxy("http://192.168.88.89:8000/")
+Server = "http://192.168.88.79:8000/"
+Server1 = "http://192.168.88.89:8000/"
+proxy = xmlrpclib.ServerProxy(Server)
+proxy2 = xmlrpclib.ServerProxy(Server1)
 #proxy2 = xmlrpclib.ServerProxy("http://localhost:8000/", allow_none=True)
 multicall = xmlrpclib.MultiCall(proxy)
-#multicall2 = xmlrpclib.MultiCall(proxy2)
+multicall2 = xmlrpclib.MultiCall(proxy2)
 # folder_hasil_komputasi = "Hasil_Server/"
 multicall.SplitElementTxt("cron")
 multicall.SplitElementTxt("cron.1")
 multicall.SplitElementTxt("cron.2")
 
-#multicall2.SplitElementTxt("cron.3")
-#multicall2.SplitElementTxt("cron.4")
-#multicall2.SplitElementTxt("cron.5")
+multicall2.SplitElementTxt("cron.3")
+multicall2.SplitElementTxt("cron.4")
+multicall2.SplitElementTxt("cron.5")
 
 #multicall.SortCount()
 ##server mendapatkan return value
 result = multicall()
-#result2 = multicall2()
+result2 = multicall2()
 
 # for i in range((result)):
 #     x,y=zip(*result)
@@ -53,11 +54,12 @@ result = multicall()
 print tuple(result)
 with open("fetched_python_data.txt", "wb") as handle:
     handle.write(proxy.datakirim().data)
-"""
+
 print tuple(result2)
-with open(folder_hasil_komputasi + "fetched_python_data2.txt", "wb") as handle:
-    handle.write(proxy.datakirim().data)
-"""
+# with open(folder_hasil_komputasi + "fetched_python_data2.txt", "wb") as handle:
+with open("fetched_python_data2.txt", "wb") as handle:
+    handle.write(proxy2.datakirim().data)
+
 #multicall.SplitElementTxt("coba.txt")
 #multicall.SortCount()
 ##server mendapatkan return value
