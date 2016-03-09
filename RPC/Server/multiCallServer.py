@@ -10,7 +10,7 @@ tempoftemp = []
 tempoftimec = []
 hit = 0
 flag=0
-folder_hasil_computasi="Hasil_Computasi/"
+# folder_hasil_computasi="Hasil_Computasi/"
 def SplitElementTxt(ofile):
     global folder_hasil_computasi, flag, temp3, hit, tempc, tempoftemp, tempoftimec
     temp1=[]
@@ -22,12 +22,14 @@ def SplitElementTxt(ofile):
     for i, line in enumerate(buka):
         lol = re.split("\W+", line, 8)
         temp1.append('(' + lol[8])
-    f = open(folder_hasil_computasi + "cron-copy.txt", 'wb')
+    # f = open(folder_hasil_computasi + "cron-copy.txt", 'wb')
+    f = open("cron-copy.txt", 'wb')
     f.writelines(temp1)
     buka.close()
     temp2=[]
     temp_count=[]
-    with open(folder_hasil_computasi + "cron-copy.txt") as infile:
+    # with open(folder_hasil_computasi + "cron-copy.txt") as infile:
+    with open("cron-copy.txt") as infile:
         counts = collections.Counter(l.strip() for l in infile)
     for line, count in counts.most_common():
         temp2.append(line)
@@ -97,7 +99,8 @@ def SplitElementTxt(ofile):
     buka2 = open(ofile)
     fmt = '%-8s%-20s%s'
     print(fmt % ('',  'Frequent','Command'))
-    fole = open(folder_hasil_computasi +  "server1.txt", 'w')
+    fole = open("server1.txt", 'w')
+    # fole = open(folder_hasil_computasi +  "server1.txt", 'w')
     for i, (name, grade) in enumerate(zip(tempc,temp3)):
         #print(fmt % (i, name, grade))
         data3 = fmt % (i, name, grade)
@@ -132,13 +135,14 @@ def SortCount():
     return temp, temp_count
 '''
 def datakirim():
-    with open(folder_hasil_computasi + "server1.txt", "rb") as handle:
+    with open("server1.txt", "rb") as handle:
+    # with open(folder_hasil_computasi + "server1.txt", "rb") as handle:
         return xmlrpclib.Binary(handle.read())
 
 
 
 
-server = SimpleXMLRPCServer(("192.168.88.47", 8000), allow_none=True)
+server = SimpleXMLRPCServer(("192.168.88.79", 8000), allow_none=True)
 print "Listening on port 8000 ... "
 server.register_multicall_functions()
 
