@@ -12,7 +12,7 @@ hit = 0
 flag=0
 nama_server="DWI_SERVER"
 IP_Server="192.168.88.79"
-PORT_Manager=8000
+PORT_Server=8000
 # folder_hasil_computasi="Hasil_Computasi/"
 def SplitElementTxt(ofile):
     global folder_hasil_computasi, flag, temp3, hit, tempc, tempoftemp, tempoftimec
@@ -146,7 +146,7 @@ def datakirim():
 
 
 
-server = SimpleXMLRPCServer((IP_Manager, PORT_Manager), allow_none=True)#ganti ke IP manager
+server = SimpleXMLRPCServer((IP_Server, PORT_Server), allow_none=True)#ganti ke IP manager
 print "Listening on port 8000 ... "
 server.register_multicall_functions()
 
