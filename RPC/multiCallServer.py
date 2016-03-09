@@ -4,17 +4,10 @@ import collections
 def add(x, y):
     return x + y
 
-temp=[]
-temp_count=[]
-
-def OpenFile():
-
-def SplitElementTxt():
-    buka = open('cron.txt')
-    temp = []
-    tempCount = []
-    count = 0
-    j = 0
+def SplitElementTxt(ofile):
+    temp=[]
+    temp_count=[]
+    buka = open(ofile)
     for i, line in enumerate(buka):
         lol = re.split("\W+", line, 8)
         temp.append('(' + lol[8])
@@ -24,6 +17,8 @@ def SplitElementTxt():
 
 
 def SortCount():
+    temp=[]
+    temp_count=[]
     with open('cron-copy.txt') as infile:
         counts = collections.Counter(l.strip() for l in infile)
     for line, count in counts.most_common():

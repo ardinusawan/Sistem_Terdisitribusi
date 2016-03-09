@@ -9,9 +9,14 @@ multicall.add(2, 3)
 ##server mencari pc yg terhubung
 ##server membagi tugas
 
-multicall.SplitElementTxt()
+multicall.SplitElementTxt("cron.txt")
 multicall.SortCount()
 ##server mendapatkan return value
 result = multicall()
+print tuple(result)
 
+multicall.SplitElementTxt("coba.txt")
+multicall.SortCount()
+##server mendapatkan return value
+result = multicall()
 print tuple(result)
