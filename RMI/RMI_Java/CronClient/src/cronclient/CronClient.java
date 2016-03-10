@@ -100,7 +100,7 @@ public class CronClient {
                 } 
             }
             sortEvent();
-            System.out.println("\n\nTop 10 Cron Event : \n");
+            System.out.println("\n\nTop 10 Cron Event : ");
             for(int i=0;i<10;i++){
                 int j=i+1;
                 System.out.println(j+" "+event[i]+" "+valEvent[i]);

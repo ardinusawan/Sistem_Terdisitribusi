@@ -24,6 +24,8 @@ public class CronImplementation extends UnicastRemoteObject implements CronDecod
 
     public ArrayList<String> readFile1(File fin) throws IOException, RemoteException {
         ArrayList<String> dbEvent = new ArrayList<String>();
+        System.out.println("File "+fin.toString()+" accepted");
+        System.out.println("Processing...");
         FileInputStream fis = new FileInputStream(fin);
         
 	BufferedReader br = new BufferedReader(new InputStreamReader(fis));
@@ -38,6 +40,7 @@ public class CronImplementation extends UnicastRemoteObject implements CronDecod
                 dbEvent.add(modFin);
 	}
 	br.close();
+        System.out.println("Sorted file "+fin.toString());
         return dbEvent;
     }
 
