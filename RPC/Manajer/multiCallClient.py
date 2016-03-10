@@ -35,27 +35,8 @@ multicall.SplitElementTxt("cron.2")
 multicall2.SplitElementTxt("cron.3")
 multicall2.SplitElementTxt("cron.4")
 multicall2.SplitElementTxt("cron.5")
-
-#multicall.SortCount()
-##server mendapatkan return value
 result = multicall()
 result2 = multicall2()
-
-# for i in range((result)):
-#     x,y=zip(*result)
-# xy=(list(x),list(y))
-#
-# list1, list2 = unzip((*result)
-# list(result) == zip(list1, list2)
-
-# list1= ( x[0] for x in result )
-# list2= ( x[1] for x in result )
-#
-# print str(list1), str(list2)
-
-
-# zip(result)
-# print tuple(zip(result))
 print tuple(result)
 with open("fetched_python_data.txt", "wb") as handle:
     handle.write(proxy.datakirim().data)
@@ -125,14 +106,3 @@ for i, (name, grade) in enumerate(zip(tempc1,temp1)):
 
 
 print("--- %s seconds ---" % (time.time() - start_time))
-
-#print tempc1
-    # f = open(folder_hasil_computasi + "cron-copy.txt", 'wb')
-    #f = open("cron-copy.txt", 'wb')
-    #f.writelines(temp1)
-
-#multicall.SplitElementTxt("coba.txt")
-#multicall.SortCount()
-##server mendapatkan return value
-#result = multicall()
-#print tuple(result)
