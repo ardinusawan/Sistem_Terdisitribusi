@@ -70,21 +70,6 @@ def SplitElementTxt(ofile):
     iter1 = 0
     iter2 = 0
     if hit>1 :
-        '''
-        for word in tempoftemp:
-            #print word
-            if word in kuda:
-                for word2 in kuda :
-                    if word == word2:
-                        tempc[iter2] += tempoftempc[iter1]
-                    else :
-                        iter2+=1
-                iter1+=1
-            else :
-                kuda.append(tempoftemp[iter1])
-                tempc.append(tempoftempc[iter1])
-                iter1+=1
-            '''
         lentemp = len(tempoftemp)
         lentemp3 = len(temp3)
         #print nyonyo
