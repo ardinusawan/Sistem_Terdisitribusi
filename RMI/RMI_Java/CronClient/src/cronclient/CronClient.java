@@ -16,6 +16,7 @@ public class CronClient {
     public static int valEvent[] = new int[100000];
     public static int count =0;
     
+    //Collection Counter
     public static Map<String, Integer> countEvent(ArrayList<String> dbEvent){
         Map<String, Integer> seussCount = new HashMap<String,Integer>();
             for(String t: dbEvent) {
@@ -63,10 +64,8 @@ public class CronClient {
             
             Registry myReg = LocateRegistry.getRegistry("192.168.43.204",1099);
             Registry myReg1 = LocateRegistry.getRegistry("192.168.43.207",1099);
-            Registry myReg2 = LocateRegistry.getRegistry("192.168.43.123",1099);
             CronDecodeInterface c = (CronDecodeInterface)myReg.lookup("mycron");
             CronDecodeInterface c1 = (CronDecodeInterface)myReg1.lookup("mycron");
-            CronDecodeInterface c2 = (CronDecodeInterface)myReg2.lookup("mycron");
             
             String dir = "\\\\192.168.43.128\\cron\\cron";
             //String dir = "\\\\192.168.88.79\\hnet-hon-var-log-02282006\\var\\log\\cron";
@@ -82,6 +81,7 @@ public class CronClient {
                 }
                 if(numserv==0){
                     numserv++;
+                    System.out.println("Decoding cron."+i+ "with server 1");
                     ArrayList<String> dbEvent = c.readFile1(fin);
                     Map<String, Integer> seussCount = countEvent(dbEvent);
                     Map<String, Integer> sortedMap = c.sortByComparator(seussCount);
@@ -89,7 +89,8 @@ public class CronClient {
                     c.printMap(sortedMap);
                 } 
                 else if(numserv==1){
-                    numserv++;
+                    numserv=0;
+                    System.out.println("Decoding cron."+i+" with server 2");
                     ArrayList<String> dbEvent1 = c1.readFile1(fin);
                     System.out.println(fin.toString());
                     Map<String, Integer> seussCount1 = countEvent(dbEvent1);
@@ -97,23 +98,12 @@ public class CronClient {
                     getDataFix(sortedMap1);
                     c1.printMap(sortedMap1);
                 } 
-                else if(numserv==2){
-                    numserv=0;
-                    String fin1 = "smb:"+fin.toString();
-                    System.out.println(fin1.substring(0, 4)+"\\\\"+fin1.substring(4, fin1.length()));
-                    fin = new File(fin1.substring(0, 4)+"\\\\"+fin1.substring(4, fin1.length()));
-                    System.out.println(fin.toString());
-                    ArrayList<String> dbEvent2 = c2.readFile1(fin);
-                    Map<String, Integer> seussCount2 = countEvent(dbEvent2);
-                    Map<String, Integer> sortedMap2 = c2.sortByComparator(seussCount2);
-                    getDataFix(sortedMap2);
-                    c2.printMap(sortedMap2);
-                }
             }
-            
             sortEvent();
+            System.out.println("\n\nTop 10 Cron Event : \n");
             for(int i=0;i<10;i++){
-                System.out.println(i+" "+event[i]+" "+valEvent[i]);
+                int j=i+1;
+                System.out.println(j+" "+event[i]+" "+valEvent[i]);
             }
                        
         }
