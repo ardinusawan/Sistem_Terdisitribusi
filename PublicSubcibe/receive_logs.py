@@ -3,10 +3,11 @@ __author__ = 'Indra Gunawan'
 import pika
 import sys
 
-credentials = pika.PlainCredentials('test', 'test')
+#credentials = pika.PlainCredentials('test', 'test')
 #parameters = pika.ConnectionParameters('192.168.0.24', credentials=credentials)
 
-connection = pika.BlockingConnection(pika.ConnectionParameters('192.168.0.24', credentials=credentials))
+#connection = pika.BlockingConnection(pika.ConnectionParameters('192.168.0.24', credentials=credentials))
+connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
 channel = connection.channel()
 
 channel.exchange_declare(exchange='logs',
