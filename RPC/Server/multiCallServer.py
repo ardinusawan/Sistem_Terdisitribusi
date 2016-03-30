@@ -10,8 +10,8 @@ tempoftemp = []
 tempoftimec = []
 hit = 0
 flag=0
-nama_server="DWI_SERVER"
-IP_Server="192.168.88.79"
+nama_server="Putra_SERVER"
+IP_Server="192.168.43.128"
 PORT_Server=8000
 # folder_hasil_computasi="Hasil_Computasi/"
 def SplitElementTxt(ofile):
@@ -132,7 +132,7 @@ def datakirim():
 
 
 server = SimpleXMLRPCServer((IP_Server, PORT_Server), allow_none=True)#ganti ke IP manager
-print "Listening on port 8000 ... "
+#print "Listening on port 8000 ... "
 server.register_multicall_functions()
 
 server.register_function(SplitElementTxt,"SplitElementTxt")
