@@ -24,7 +24,7 @@ public class Orak {
 //        map3.putAll(map);
         
         map2.forEach((k, v) -> map.merge(k, v, (v1, v2) -> v1 + v2));
-       // map3.forEach((k, v) -> map2.merge(k, v, (v1, v2) -> v1 + v2));
+        map3.forEach((k, v) -> map2.merge(k, v, (v1, v2) -> v1 + v2));
         System.out.println(map2);
      }
 }

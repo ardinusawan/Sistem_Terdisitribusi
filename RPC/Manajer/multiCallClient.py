@@ -1,5 +1,10 @@
 __author__ = 'Indra Gunawan'
 import xmlrpclib
+import re
+import time
+start_time = time.time()
+#main()
+
 """
 def unzip(args):
 
@@ -30,27 +35,8 @@ multicall.SplitElementTxt("cron.2")
 multicall2.SplitElementTxt("cron.3")
 multicall2.SplitElementTxt("cron.4")
 multicall2.SplitElementTxt("cron.5")
-
-#multicall.SortCount()
-##server mendapatkan return value
 result = multicall()
 result2 = multicall2()
-
-# for i in range((result)):
-#     x,y=zip(*result)
-# xy=(list(x),list(y))
-#
-# list1, list2 = unzip((*result)
-# list(result) == zip(list1, list2)
-
-# list1= ( x[0] for x in result )
-# list2= ( x[1] for x in result )
-#
-# print str(list1), str(list2)
-
-
-# zip(result)
-# print tuple(zip(result))
 print tuple(result)
 with open("fetched_python_data.txt", "wb") as handle:
     handle.write(proxy.datakirim().data)
@@ -60,8 +46,63 @@ print tuple(result2)
 with open("fetched_python_data2.txt", "wb") as handle:
     handle.write(proxy2.datakirim().data)
 
-#multicall.SplitElementTxt("coba.txt")
-#multicall.SortCount()
-##server mendapatkan return value
-#result = multicall()
-#print tuple(result)
+tempc1 = []
+temp1 = []
+buka = open('fetched_python_data.txt')
+for i, line in enumerate(buka):
+    lol = re.split("\W+", line, 2)
+    tempc1.append(int(lol[1]))
+    temp1.append('('+lol[2])
+print temp1
+print tempc1
+
+tempc2 = []
+temp2 = []
+buka = open('fetched_python_data2.txt')
+for i, line in enumerate(buka):
+    lol = re.split("\W+", line, 2)
+    tempc2.append(int(lol[1]))
+    temp2.append('('+lol[2])
+print temp2
+print tempc2
+
+lentemp1 = len(temp1)
+lentemp2 = len(temp2)
+cek = 0
+for i in range(lentemp2):
+    for j in range(lentemp1):
+        cek+=1
+        if temp2[i] == temp1[j]:
+            tempc1[j] += tempc2[i]
+            cek = -10;
+        if cek==lentemp1-1 :
+            #print 'masuk'
+            temp1.append(temp2[i])
+            tempc1.append(tempc2[i])
+    cek = 0
+
+lentemp1 = len(temp1)
+for i in range(lentemp1):
+    for j in range(lentemp1):
+
+        if tempc1[i] > tempc1[j]:
+            tempoftemp = temp1[i]
+            tempoftempc = tempc1[i]
+            temp1[i] = temp1[j]
+            tempc1[i] = tempc1[j]
+            temp1[j] = tempoftemp
+            tempc1[j] = tempoftempc
+
+fmt = '%-8s%-20s%s'
+print(fmt % ('',  'Frequent','Command'))
+hitung = 0
+
+for i, (name, grade) in enumerate(zip(tempc1,temp1)):
+    #print(fmt % (i, name, grade))
+    if hitung != 10 :
+        data3 = fmt % (i, name, grade)
+        print data3
+        hitung = hitung +1
+
+
+print("--- %s seconds ---" % (time.time() - start_time))
