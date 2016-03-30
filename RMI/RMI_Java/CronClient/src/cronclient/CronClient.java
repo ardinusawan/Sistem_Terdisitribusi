@@ -29,6 +29,7 @@ public class CronClient {
         return seussCount;
     }
     
+    //get data to String
     public static void getDataFix(Map<String, Integer> map){
         for (Map.Entry<String, Integer> entry : map.entrySet()) {
                         int exist = Arrays.asList(event).indexOf(entry.getKey());
@@ -43,6 +44,7 @@ public class CronClient {
 	}
     }
     
+    //sorting event
     public static void sortEvent(){
         int tempVal; String tempEv;
         for(int i=0;i<count;i++){
@@ -59,6 +61,7 @@ public class CronClient {
         }
         
     }
+    
     public static void main(String[] args) {
         try{
             
