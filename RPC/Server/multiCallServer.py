@@ -11,7 +11,7 @@ tempoftimec = []
 hit = 0
 flag=0
 nama_server="DWI_SERVER"
-IP_Server="192.168.88.79"
+IP_Server="192.168.43.207"
 PORT_Server=8000
 # folder_hasil_computasi="Hasil_Computasi/"
 def SplitElementTxt(ofile):
@@ -95,9 +95,9 @@ def SplitElementTxt(ofile):
                 if tempoftemp[i] == temp3[j]:
                     tempc[j] += tempoftempc[i]
                     cek = -10;
-            if cek==lentemp3-1 :
-                temp3.append(tempoftemp[i])
-                tempc.append(tempoftempc[i])
+                if cek==lentemp3-1 :
+                    temp3.append(tempoftemp[i])
+                    tempc.append(tempoftempc[i])
             cek = 0
 
     buka2 = open(ofile)
