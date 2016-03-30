@@ -5,7 +5,7 @@ import java.io.IOException;
 
 public class recv {
 
-  private final static String QUEUE_NAME = "hello";
+  private final static String QUEUE_NAME = "messagequeue";
 
   public static void main(String[] argv) throws Exception {
     ConnectionFactory factory = new ConnectionFactory();
@@ -20,8 +20,8 @@ public class recv {
       @Override
       public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body)
           throws IOException {
-        String message = new String(body, "UTF-8");
-        System.out.println(" [x] Received '" + message + "'");
+          String message = new String(body, "UTF-8");
+          System.out.println(" [x] Received '" + message + "'");
       }
     };
     channel.basicConsume(QUEUE_NAME, true, consumer);

@@ -102,6 +102,7 @@ public class CronClient {
                     c1.printMap(sortedMap1);
                 } 
             }
+            
             sortEvent();
             System.out.println("\n\nTop 10 Cron Event : ");
             for(int i=0;i<10;i++){

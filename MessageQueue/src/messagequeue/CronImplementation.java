@@ -11,6 +11,7 @@ import java.rmi.server.UnicastRemoteObject;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -19,9 +20,10 @@ import java.util.Map;
 
 public class CronImplementation extends UnicastRemoteObject implements CronDecodeInterface{
 
-    public CronImplementation () throws RemoteException{  }
+    public CronImplementation () throws IOException{  }
 
-    public ArrayList<String> readFile1(File fin) throws IOException, RemoteException {
+    //reading file
+    public ArrayList<String> readFile1(File fin) throws IOException{
         ArrayList<String> dbEvent = new ArrayList<String>();
         System.out.println("File "+fin.toString()+" accepted");
         System.out.println("Processing...");
@@ -39,11 +41,11 @@ public class CronImplementation extends UnicastRemoteObject implements CronDecod
                 dbEvent.add(modFin);
 	}
 	br.close();
-        System.out.println("Sorted file "+fin.toString());
         return dbEvent;
     }
 
-    public Map<String, Integer> sortByComparator(Map<String, Integer> unsortMap) throws RemoteException {
+    //sorting map
+    public Map<String, Integer> sortByComparator(Map<String, Integer> unsortMap) {
         // Convert Map to List
 		List<Map.Entry<String, Integer>> list = 
 			new LinkedList<Map.Entry<String, Integer>>(unsortMap.entrySet());
@@ -66,12 +68,27 @@ public class CronImplementation extends UnicastRemoteObject implements CronDecod
                 
     }
 
-    public void printMap(Map<String, Integer> map) throws RemoteException {
+    //printing sorted map
+    public void printMap(Map<String, Integer> map) {
                 int count = 0;
 		for (Map.Entry<String, Integer> entry : map.entrySet()) {
 			System.out.println(++count + " " +entry.getKey() 
                                       + " --->>" + entry.getValue());
 		}
+    }
+    
+    
+    //collection counter
+    public Map<String, Integer> countEvent(ArrayList<String> dbEvent){
+        Map<String, Integer> seussCount = new HashMap<String,Integer>();
+            for(String t: dbEvent) {
+                Integer i = seussCount.get(t);
+                if (i ==  null) {
+                    i = 0;
+                }
+                seussCount.put(t, i + 1);
+            }
+        return seussCount;
     }
     
 }
