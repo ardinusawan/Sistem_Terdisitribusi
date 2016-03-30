@@ -19,8 +19,9 @@ public class NewTask {
   private static String[] event = new String[100000];
   private static int valEvent[] = new int[100000];
   private static int count =0;
+  //public static Map<String, Integer> sortedMap = new HashMap<String, Integer>();
 
-  private static final String TASK_QUEUE_NAME = "task_queue";
+  private static final String TASK_QUEUE_NAME = "newqueue";
   
   //convert data to string
   private static void getDataFix(Map<String, Integer> map){
@@ -72,8 +73,8 @@ public class NewTask {
   }
   
   private static String[] path(){
-      String p[] = new String[34];
-      for(int i=0;i<1;i++){
+      String p[] = new String[2];
+      for(int i=0;i<2;i++){
           if(i==0){
               p[i] ="E:\\ITS\\KULIAH\\SEMESTER 6\\SISTER\\cron\\cron";
           } else{
@@ -91,58 +92,30 @@ public class NewTask {
     Connection connection = factory.newConnection();
     Channel channel = connection.createChannel();
     
-    for(int i=0;i<p.length;i++){
+    //decoding
+    for(int i=0;i<p.length-1;i++){
         File fin = new File(p[i]);
-        ArrayList<String> dbEvent = c.readFile1(fin);
+        ArrayList<String> dbEvent = c.readFile1(fin); //reading file from client
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         DataOutputStream out = new DataOutputStream(baos);
         for (String element : dbEvent) {
             out.writeUTF(element);
         }
-        byte[] bytes = baos.toByteArray();
+        byte[] bytes = baos.toByteArray(); //converting to byte and send to worker
         channel.queueDeclare(TASK_QUEUE_NAME, true, false, false, null);
+        //sending
         channel.basicPublish("", TASK_QUEUE_NAME,
                             MessageProperties.PERSISTENT_TEXT_PLAIN,
                             bytes);
+        
         String dat = p[i].substring(p[i].length()-6, p[i].length());
         System.out.println(" [x] Sent '" + dat + "'");
+        channel.basicQos(1);
         
-        //get output from server
-        final Consumer consumer = new DefaultConsumer(channel) {
-            @Override
-            public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
-                Map<String, Integer> sortedMap = new HashMap<String, Integer>();
-                try(ByteArrayInputStream b = new ByteArrayInputStream(body)){
-                    try(ObjectInputStream o = new ObjectInputStream(b)){
-                        sortedMap = (Map<String, Integer>) o.readObject();
-                    } catch (ClassNotFoundException ex) {
-                      Logger.getLogger(NewTask.class.getName()).log(Level.SEVERE, null, ex);
-                    }
-                }  
-              getDataFix(sortedMap);
-            }
-        };
-        
-        channel.close();
-        connection.close();
     }
+    channel.close();
+    connection.close();
     
-//    ConnectionFactory factory = new ConnectionFactory();
-//    factory.setHost("localhost");
-//    Connection connection = factory.newConnection();
-//    Channel channel = connection.createChannel();
-//
-//    channel.queueDeclare(TASK_QUEUE_NAME, true, false, false, null);
-//
-//    String message = getMessage(argv);
-//
-//    channel.basicPublish("", TASK_QUEUE_NAME,
-//                        MessageProperties.PERSISTENT_TEXT_PLAIN,
-//                        message.getBytes("UTF-8"));
-//    System.out.println(" [x] Sent '" + message + "'");
-//
-//    channel.close();
-//    connection.close();
   }
 
 }
