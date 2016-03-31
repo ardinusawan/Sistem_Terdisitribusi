@@ -2,7 +2,7 @@ __author__ = 'Indra Gunawan'
 import sys
 import os,socket,threading,time
 
-server_address = ('localhost', 8000)
+server_address = ('192.168.43.204', 8000)
 client = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 client.connect(server_address)
 
