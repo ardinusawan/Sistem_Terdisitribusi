@@ -52,5 +52,6 @@ public class NewTask {
         int x = ar.size()+ar1.size();
         System.out.println(x);
         send("localhost", ar);
+        send("192.168.0.23", ar1);
       }
 }
