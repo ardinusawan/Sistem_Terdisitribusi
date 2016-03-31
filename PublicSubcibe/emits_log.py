@@ -14,7 +14,8 @@ with open('crongabung1', 'w') as outfile:
             for line in infile:
                 outfile.write(line)
 
-connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+credential = pika.PlainCredentials('test','test')
+connection = pika.BlockingConnection(pika.ConnectionParameters(host='192.168.0.23', credentials=credential))
 channel = connection.channel()
 
 channel.exchange_declare(exchange='logs', type='fanout')

@@ -4,6 +4,8 @@ import pika
 import sys
 import re
 import collections
+import socket
+
 
 #credentials = pika.PlainCredentials('test', 'test')
 #connection = pika.BlockingConnection(pika.ConnectionParameters('192.168.0.24', credentials=credentials))
@@ -105,6 +107,23 @@ def SplitElementTxt(ofile):
 
     buka2.close()
     fole.close()
+
+
+def kirim(ofile):
+    server_addr = ('localhost',9000)
+    server_socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+    server_socket.bind(server_addr)
+
+    server_socket.listen(1)
+    #print 'waiting connection...'
+    server_socket.accept()
+    f=open(ofile,"rb")
+    bytesToSend = f.read(4096)
+    server_socket.send(bytesToSend)
+    while bytesToSend != "":
+        bytesToSend = f.read(4096)
+        server_socket.send(bytesToSend)
+
 
 
 def callback(ch, method, properties, body):
