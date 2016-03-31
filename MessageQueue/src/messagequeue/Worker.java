@@ -1,18 +1,14 @@
 package messagequeue;
 
 import com.rabbitmq.client.*;
-import java.io.IOException;
-import java.util.*;
 import java.io.*;
+import java.util.*;
 
 public class Worker {
 
-  private static final String TASK_QUEUE_NAME = "newqueue";
-  
-  public static byte[] b = new byte[]{};
-
+  private static final String TASK_QUEUE_NAME = "task_queue";
+  private static final String TASK_QUEUE_NAME1 = "sinker";
   public static void main(String[] argv) throws Exception {
-    CronDecodeInterface c = new CronImplementation();
     ConnectionFactory factory = new ConnectionFactory();
     factory.setHost("localhost");
     final Connection connection = factory.newConnection();
@@ -22,9 +18,11 @@ public class Worker {
     System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
 
     channel.basicQos(1);
+
     final Consumer consumer = new DefaultConsumer(channel) {
       @Override
       public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
+        CronDecodeInterface c = new CronImplementation();
         ByteArrayInputStream bais = new ByteArrayInputStream(body);
         DataInputStream in = new DataInputStream(bais);
         ArrayList<String> dbEvent = new ArrayList(); //converting data from client to MAP
@@ -32,16 +30,22 @@ public class Worker {
             String element = in.readUTF();
             dbEvent.add(element);
         }
-        
-        Map<String, Integer> seussCount = c.countEvent(dbEvent); //collection counter
-        Map<String, Integer> sortedMap = c.sortByComparator(seussCount); //sorting counter
+        System.out.println(dbEvent.size());
+        Map<String, Integer> seussCount = c.countEvent(dbEvent);
+        Map<String, Integer> sortedMap = c.sortByComparator(seussCount);
         
         ByteArrayOutputStream byteOut = new ByteArrayOutputStream();
         ObjectOutputStream out = new ObjectOutputStream(byteOut);
-        out.writeObject(sortedMap); //convert to byte to send back to client
-        b = byteOut.toByteArray();        
+        out.writeObject(sortedMap);
+        byte[] bytes = byteOut.toByteArray();
+        channel.queueDeclare(TASK_QUEUE_NAME1, true, false, false, null);
+        channel.basicPublish("", TASK_QUEUE_NAME1,
+                MessageProperties.PERSISTENT_TEXT_PLAIN,
+                bytes);
+        channel.queueDelete(TASK_QUEUE_NAME1);
       }
     };
     channel.basicConsume(TASK_QUEUE_NAME, false, consumer);
   }
+
 }
