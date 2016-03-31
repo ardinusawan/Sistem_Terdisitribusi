@@ -35,16 +35,12 @@ public class NewTask {
   public static void main(String[] argv) throws Exception {
         CronDecodeInterface c = new CronImplementation();
         messagequeue.MessageQueue m = new messagequeue.MessageQueue();
-        String p[] = m.path(4);
+        String p[] = m.path(34);
         ArrayList<String> ar = new ArrayList();
         ArrayList<String> ar1 = new ArrayList();
         
-        for(int i=0;i<2;i++){
-            ar = c.readFile1(new File(p[i]));
-            System.out.println(" [x] Sent '" + p[i] + "'");
-        }
-        for(int i=2;i<4;i++){
-            ar1 = c.readFile1(new File(p[i]));
+        for(int i=0;i<34;i++){
+            c.readFile1(new File(p[i]), ar);
             System.out.println(" [x] Sent '" + p[i] + "'");
         }
         System.out.println(ar.size());
@@ -52,6 +48,5 @@ public class NewTask {
         int x = ar.size()+ar1.size();
         System.out.println(x);
         send("localhost", ar);
-        send("192.168.0.23", ar1);
       }
 }

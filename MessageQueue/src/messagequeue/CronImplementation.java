@@ -18,13 +18,12 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
-public class CronImplementation extends UnicastRemoteObject implements CronDecodeInterface{
+public class CronImplementation implements CronDecodeInterface{
 
     public CronImplementation () throws IOException{  }
 
     //reading file
-    public ArrayList<String> readFile1(File fin) throws IOException{
-        ArrayList<String> dbEvent = new ArrayList<String>();
+    public void readFile1(File fin, ArrayList<String> dbEvent) throws IOException{
         FileInputStream fis = new FileInputStream(fin);
         
 	BufferedReader br = new BufferedReader(new InputStreamReader(fis));
@@ -39,7 +38,6 @@ public class CronImplementation extends UnicastRemoteObject implements CronDecod
                 dbEvent.add(modFin);
 	}
 	br.close();
-        return dbEvent;
     }
 
     //sorting map

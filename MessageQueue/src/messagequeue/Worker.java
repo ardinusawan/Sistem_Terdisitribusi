@@ -7,7 +7,8 @@ import java.util.*;
 public class Worker {
 
   private static final String TASK_QUEUE_NAME = "task_queue";
-  private static final String TASK_QUEUE_NAME1 = "sinker";
+  private static final String TASK_QUEUE_NAME1 = "sinkering";
+  
   public static void main(String[] argv) throws Exception {
     ConnectionFactory factory = new ConnectionFactory();
     factory.setHost("localhost");
@@ -42,7 +43,6 @@ public class Worker {
         channel.basicPublish("", TASK_QUEUE_NAME1,
                 MessageProperties.PERSISTENT_TEXT_PLAIN,
                 bytes);
-        channel.queueDelete(TASK_QUEUE_NAME1);
       }
     };
     channel.basicConsume(TASK_QUEUE_NAME, false, consumer);
