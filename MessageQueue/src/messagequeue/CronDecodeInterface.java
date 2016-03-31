@@ -9,7 +9,7 @@ import java.util.Map;
 
 public interface CronDecodeInterface {
      
-    public  ArrayList<String> readFile1(File fin) throws IOException;
+    public  void readFile1(File fin, ArrayList<String> dbEvent) throws IOException;
     
     public Map<String, Integer> sortByComparator(Map<String, Integer> unsortMap);
     

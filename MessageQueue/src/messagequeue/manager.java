@@ -14,7 +14,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class manager {
-    private static String TASK_QUEUE_NAME = "sinker";
+    private static String TASK_QUEUE_NAME = "sinkering";
     
     public static String[] event = new String[100000];
     public static int valEvent[] = new int[100000];
@@ -52,45 +52,37 @@ public class manager {
         
     }
     
-    public static void recv(String host) throws Exception{
-      ConnectionFactory factory = new ConnectionFactory();
-      factory.setHost(host);
-      Connection connection = factory.newConnection();
-      Channel channel = connection.createChannel();
-      
-      channel.queueDeclare(TASK_QUEUE_NAME, true, false, false, null);
-      System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
-      channel.basicQos(1);
-      
-      final Consumer consumer = new DefaultConsumer(channel) {
-            @Override
-            public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
-                ByteArrayInputStream byteIn = new ByteArrayInputStream(body);
-                ObjectInputStream in = new ObjectInputStream(byteIn);
-                try {
-                    Map<String, Integer> data2 = (Map<String, Integer>) in.readObject();
-                    getDataFix(data2);
-                    sortEvent();
-                    
-                } catch (ClassNotFoundException ex) {
-                    Logger.getLogger(manager.class.getName()).log(Level.SEVERE, null, ex);
-                }
-
-            }
-        };
-        channel.basicConsume(TASK_QUEUE_NAME, false, consumer);
-        channel.queueDelete(TASK_QUEUE_NAME);
-        channel.close();
-        connection.close();
-    }
     
     public static void main(String args[])throws Exception{
-        recv("localhost");
-        recv("192.168.0.23");
-        System.out.println("\n\nTop 10 Cron Event : ");
-        for(int i=0;i<10;i++){
-            int j=i+1;
-            System.out.println(j+" "+event[i]+" "+valEvent[i]);
-        }
+        ConnectionFactory factory = new ConnectionFactory();
+        factory.setHost("localhost");
+        final Connection connection = factory.newConnection();
+        final Channel channel = connection.createChannel();
+
+        channel.queueDeclare(TASK_QUEUE_NAME, true, false, false, null);
+        System.out.println(" [*] Waiting for messages. To exit press CTRL+C");
+        channel.basicQos(1);
+
+        final Consumer consumer = new DefaultConsumer(channel) {
+          @Override
+          public void handleDelivery(String consumerTag, Envelope envelope, AMQP.BasicProperties properties, byte[] body) throws IOException {
+            ByteArrayInputStream byteIn = new ByteArrayInputStream(body);
+            ObjectInputStream in = new ObjectInputStream(byteIn);
+              try {
+                  Map<String, Integer> data2 = (Map<String, Integer>) in.readObject();
+                  getDataFix(data2);
+                  sortEvent();
+                  System.out.println("\n\nTop 10 Cron Event : ");
+                    for(int i=0;i<10;i++){
+                        int j=i+1;
+                        System.out.println(j+" "+event[i]+" "+valEvent[i]);
+                    }
+              } catch (ClassNotFoundException ex) {
+                  Logger.getLogger(manager.class.getName()).log(Level.SEVERE, null, ex);
+              }
+           }
+        };
+        channel.basicConsume(TASK_QUEUE_NAME, false, consumer);
+//        channel.queueDelete(TASK_QUEUE_NAME);
     }
 }
