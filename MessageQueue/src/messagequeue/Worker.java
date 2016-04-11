@@ -8,9 +8,11 @@ public class Worker {
 
   private static final String TASK_QUEUE_NAME = "task_queue";
   private static final String TASK_QUEUE_NAME1 = "sinker";
+  
   public static void main(String[] argv) throws Exception {
     ConnectionFactory factory = new ConnectionFactory();
-    factory.setHost("localhost");
+    factory.setHost("192.168.43.128");
+    factory.getSaslConfig();
     final Connection connection = factory.newConnection();
     final Channel channel = connection.createChannel();
 

@@ -7,9 +7,9 @@ import collections
 import socket
 
 
-#credentials = pika.PlainCredentials('test', 'test')
-#connection = pika.BlockingConnection(pika.ConnectionParameters('192.168.0.24', credentials=credentials))
-connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+credentials = pika.PlainCredentials('test', 'test')
+connection = pika.BlockingConnection(pika.ConnectionParameters('192.168.0.23', credentials=credentials))
+#connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
 channel = connection.channel()
 
 channel.exchange_declare(exchange='logs',type='fanout')
