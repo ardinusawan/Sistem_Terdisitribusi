@@ -8,8 +8,13 @@ import socket
 
 
 credentials = pika.PlainCredentials('test', 'test')
+<<<<<<< HEAD
 connection = pika.BlockingConnection(pika.ConnectionParameters('192.168.0.23', credentials=credentials))
 #connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+=======
+connection = pika.BlockingConnection(pika.ConnectionParameters('192.168.43.123', credentials=credentials))
+#connection = pika.BlockingConnection(pika.ConnectionParameters(host='192.168.0.30'))
+>>>>>>> 091525ef6d107575ed0496fd2eca1efda7e25fab
 channel = connection.channel()
 
 channel.exchange_declare(exchange='logs',type='fanout')
@@ -34,7 +39,7 @@ tempoftemp = []
 tempoftimec = []
 hit = 0
 flag=0
-nama_server="DWI_SERVER"
+nama_server="WAWAN_SERVER"
 #IP_Server="192.168.43.207"
 #PORT_Server=8000
 # folder_hasil_computasi="Hasil_Computasi/"
@@ -100,7 +105,7 @@ def SplitElementTxt(ofile):
     fole = open(nama_server, 'w')
     # fole = open(folder_hasil_computasi +  "server1.txt", 'w')
     for i, (name, grade) in enumerate(zip(tempc,temp3)):
-        #print(fmt % (i, name, grade))
+        print(fmt % (i, name, grade))
         data3 = fmt % (i, name, grade)
         #print data3
         fole.write(data3+"\n")

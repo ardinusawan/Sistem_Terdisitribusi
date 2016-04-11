@@ -2,11 +2,12 @@ __author__ = 'Indra Gunawan'
 import os
 import socket
 import threading
+import re
 import time
 import subprocess
 
 hapus = True
-local_ip = ('127.0.0.1')
+local_ip = ('192.168.0.24')
 local_port = 8000
 currdir=os.path.abspath('.')
 
@@ -257,7 +258,7 @@ if __name__=='__main__':
 
     tempc2 = []
     temp2 = []
-    buka = open('fetched_python_data2.txt')
+    buka = open('WAWAN_SERVER')
     for i, line in enumerate(buka):
         lol = re.split("\W+", line, 2)
         tempc2.append(int(lol[1]))
