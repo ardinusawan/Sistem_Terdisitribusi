@@ -8,8 +8,13 @@ import socket
 
 
 credentials = pika.PlainCredentials('test', 'test')
+<<<<<<< HEAD
+connection = pika.BlockingConnection(pika.ConnectionParameters('192.168.0.23', credentials=credentials))
+#connection = pika.BlockingConnection(pika.ConnectionParameters(host='localhost'))
+=======
 connection = pika.BlockingConnection(pika.ConnectionParameters('192.168.43.123', credentials=credentials))
 #connection = pika.BlockingConnection(pika.ConnectionParameters(host='192.168.0.30'))
+>>>>>>> 091525ef6d107575ed0496fd2eca1efda7e25fab
 channel = connection.channel()
 
 channel.exchange_declare(exchange='logs',type='fanout')
