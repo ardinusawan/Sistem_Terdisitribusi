@@ -1,4 +1,4 @@
-#!/usr/bin/env python
+__author__ = 'Indra Gunawan'
 from ladon.compat import PORTABLE_STRING
 
 from ladon.ladonizer import ladonize
