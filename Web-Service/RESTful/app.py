@@ -12,9 +12,9 @@ nama_server = "ManServer"
 
 @app.route("/")
 def smanager():
-    server = "http://localhost:5001/"
-    req = urllib2.Request(server)
+    server = "http://192.168.88.89:5000/"
     response = urllib2.urlopen(req)
+    return json.load(response)
 
 if __name__ == "__main__":
-   app.run(host='localhost', port=5000)
+   app.run(host = "192.168.88.32")
