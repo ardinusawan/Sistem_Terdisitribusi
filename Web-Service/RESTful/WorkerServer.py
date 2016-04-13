@@ -91,8 +91,9 @@ def smanager():
             s1 = count(fname)
         else:
             count(fname)
-        return s1
+    print "Done Server xx"
+    return s1
             
 
 if __name__ == "__main__":
-   app.run()
+   app.run(host='xxx.xxx.xxx.xxx')
