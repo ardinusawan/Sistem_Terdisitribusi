@@ -9,8 +9,6 @@ from flask import Flask, jsonify
 
 app = Flask(__name__)
 
-
-
 @app.route('/')
 def index():
     return "Hello, World!"
@@ -35,18 +33,19 @@ tasks = [
 def get_tasks():
     return jsonify({'tasks': tasks})
 
-# @app.route('/olah_log',methods=['GET'])
-# def olah_log():
-
 @app.route('/hello', methods=['GET'])
 def print_berhasil():
     hello.write()
     return "berhasil"
 
-@app.route('/run', methods=['GET'])
-def run():
-    SplitElement.SplitElementTxt("cron")
-    return 'Berhasil';
+@app.route('/run/<id>', methods=['GET'])
+def run(id):
+    if id()==1000:
+        SplitElement.SplitElementTxt("cron");
+    else:
+        SplitElement.SplitElementTxt("cron"+"."+id);
+        return 'yey';
+
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0',port=5001,debug=True)
