@@ -1,9 +1,25 @@
-#!/usr/bin/env python
+__author__ = 'Indra Gunawan'
 
 from suds.client import Client
 
 client = Client('http://localhost:8888/Calculator/soap/description')
 
+hasil = client.service.count('cron')
+print 'Hasil count : ', hasil
 
-print 'Pembulatan ke atas  : 5.6      =', client.service.ceiler(5.6)
-print 'Hasil count : ', client.service.count('cron')
+bagi = hasil.split("[")
+bagi2 = bagi[1].split("]")
+bagi3 = bagi2[0].split(",")
+print bagi
+#print bagi[1]
+print bagi[2]
+#print bagi2[0][0]
+print bagi3
+#print bagi3[0]
+bagi4 =bagi[2].split(",")
+
+print bagi4
+
+listranking = bagi3
+listcomand = bagi4
+
