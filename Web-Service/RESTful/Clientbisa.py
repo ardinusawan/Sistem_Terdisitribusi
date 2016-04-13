@@ -1,4 +1,4 @@
-__author__ = 'Indra Gunawan'
+__author__ = 'DePut'
 import json
 import urllib2
 
