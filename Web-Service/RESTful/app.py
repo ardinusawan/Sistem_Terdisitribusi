@@ -8,8 +8,6 @@ import urllib2
 
 app = Flask(__name__)
 
-
-
 nama_server = "ManServer"
 
 @app.route("/")
