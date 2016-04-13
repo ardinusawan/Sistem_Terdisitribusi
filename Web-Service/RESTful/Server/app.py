@@ -113,13 +113,51 @@ tasks = [
         'hasil': count("cron"),
         'hasil2': count("cron.1"),
         'hasil3': count("cron.2"),
+        'hasil4': count("cron.3"),
+        'hasil5': count("cron.4"),
+        'hasil6': count("cron.5"),
+        'hasil7': count("cron.6"),
+        'hasil8': count("cron.7"),
+        'hasil9': count("cron.8"),
+        'hasil10': count("cron.9"),
+        'hasil11': count("cron.10"),
+        'hasil12': count("cron.11"),
+        'hasil13': count("cron.12"),
+        'hasil14': count("cron.13"),
+        'hasil15': count("cron.14"),
+        'hasil16': count("cron.15"),
+        'hasil17': count("cron.16")
+
+    }
+]
+
+tasks2 = [
+    {
+        'hasil': count("cron.17"),
+        'hasil2': count("cron.18"),
+        'hasil3': count("cron.19"),
+        'hasil4': count("cron.20"),
+        'hasil5': count("cron.21"),
+        'hasil6': count("cron.22"),
+        'hasil7': count("cron.23"),
+        'hasil8': count("cron.24"),
+        'hasil9': count("cron.25"),
+        'hasil10': count("cron.26"),
+        'hasil11': count("cron.27"),
+        'hasil12': count("cron.28"),
+        'hasil13': count("cron.29"),
+        'hasil14': count("cron.30"),
+        'hasil15': count("cron.31"),
+        'hasil16': count("cron.32"),
+        'hasil17': count("cron.33")
+
     }
 ]
 
 @app.route("/")
 def hello_world():
     lol =123
-    return jsonify(message = tasks)
+    return jsonify(message = tasks2)
 
 if __name__ == "__main__":
    app.run()
