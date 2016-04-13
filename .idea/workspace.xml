@@ -2,10 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d26f907-06ef-42c8-805b-a05d5704b4a8" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Sistem_Terdisitribusi.iml" afterPath="$PROJECT_DIR$/.idea/Sistem_Terdisitribusi.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Web-Service/SOAP/clientSuds.py" afterPath="$PROJECT_DIR$/Web-Service/SOAP/clientSuds.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Sistem_Terdisitribusi.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -41,9 +38,11 @@
       <file leaf-file-name="clientSuds.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Web-Service/SOAP/clientSuds.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.039906103">
-              <caret line="1" column="25" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
-              <folding />
+            <state vertical-scroll-proportion="0.9201878">
+              <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
+              <folding>
+                <element signature="e#123#153#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -148,24 +147,7 @@
       <recent name="F:\kodingan\SisTer\Sistem_Terdisitribusi\PublicSubcibe" />
     </key>
   </component>
-  <component name="RunManager" selected="Python.clientSuds">
-    <configuration default="false" name="subscribeTest" type="PythonConfigurationType" factoryName="Python" temporary="true">
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <envs>
-        <env name="PYTHONUNBUFFERED" value="1" />
-      </envs>
-      <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/PublicSubcibe" />
-      <option name="IS_MODULE_SDK" value="true" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <module name="Sistem_Terdisitribusi" />
-      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/PublicSubcibe/subscribeTest.py" />
-      <option name="PARAMETERS" value="" />
-      <option name="SHOW_COMMAND_LINE" value="false" />
-      <method />
-    </configuration>
+  <component name="RunManager" selected="Python.clientSuds (1)">
     <configuration default="false" name="receive_logs" type="PythonConfigurationType" factoryName="Python" temporary="true">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -230,6 +212,23 @@
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <module name="Sistem_Terdisitribusi" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/../SOAP/clientSuds.py" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <method />
+    </configuration>
+    <configuration default="false" name="clientSuds (1)" type="PythonConfigurationType" factoryName="Python" temporary="true">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Web-Service/SOAP" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="Sistem_Terdisitribusi" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Web-Service/SOAP/clientSuds.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <method />
@@ -357,19 +356,19 @@
       <method />
     </configuration>
     <list size="5">
-      <item index="0" class="java.lang.String" itemvalue="Python.subscribeTest" />
-      <item index="1" class="java.lang.String" itemvalue="Python.receive_logs" />
-      <item index="2" class="java.lang.String" itemvalue="Python.emits_log" />
-      <item index="3" class="java.lang.String" itemvalue="Python.Server" />
-      <item index="4" class="java.lang.String" itemvalue="Python.clientSuds" />
+      <item index="0" class="java.lang.String" itemvalue="Python.receive_logs" />
+      <item index="1" class="java.lang.String" itemvalue="Python.emits_log" />
+      <item index="2" class="java.lang.String" itemvalue="Python.Server" />
+      <item index="3" class="java.lang.String" itemvalue="Python.clientSuds" />
+      <item index="4" class="java.lang.String" itemvalue="Python.clientSuds (1)" />
     </list>
     <recent_temporary>
       <list size="5">
-        <item index="0" class="java.lang.String" itemvalue="Python.clientSuds" />
-        <item index="1" class="java.lang.String" itemvalue="Python.Server" />
-        <item index="2" class="java.lang.String" itemvalue="Python.emits_log" />
-        <item index="3" class="java.lang.String" itemvalue="Python.receive_logs" />
-        <item index="4" class="java.lang.String" itemvalue="Python.subscribeTest" />
+        <item index="0" class="java.lang.String" itemvalue="Python.clientSuds (1)" />
+        <item index="1" class="java.lang.String" itemvalue="Python.clientSuds" />
+        <item index="2" class="java.lang.String" itemvalue="Python.Server" />
+        <item index="3" class="java.lang.String" itemvalue="Python.emits_log" />
+        <item index="4" class="java.lang.String" itemvalue="Python.receive_logs" />
       </list>
     </recent_temporary>
   </component>
@@ -639,14 +638,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/RPC/Manajer/multiCallClient.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/../SOAP/serverLadon.py">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -667,11 +658,21 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/RPC/Manajer/multiCallClient.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="95" column="0" selection-start-line="95" selection-start-column="0" selection-end-line="105" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Web-Service/SOAP/clientSuds.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.039906103">
-          <caret line="1" column="25" selection-start-line="1" selection-start-column="25" selection-end-line="1" selection-end-column="25" />
-          <folding />
+        <state vertical-scroll-proportion="0.9201878">
+          <caret line="133" column="0" selection-start-line="133" selection-start-column="0" selection-end-line="133" selection-end-column="0" />
+          <folding>
+            <element signature="e#123#153#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

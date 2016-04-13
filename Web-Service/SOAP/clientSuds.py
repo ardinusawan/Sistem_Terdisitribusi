@@ -4,8 +4,8 @@ from suds.client import Client
 import re
 import collections
 
-client = Client('http://localhost:8888/Calculator/soap/description')
-client2 = Client('http://192.168.0.0:8888/Calculator/soap/description')
+client = Client('http://192.168.88.64:8888/Calculator/soap/description')
+client2 = Client('http://192.168.88.32:8888/Calculator/soap/description')
 
 hasil = client.service.count('cron')
 hasil = client.service.count('cron.1')
@@ -47,6 +47,7 @@ print "[v] response dari server 2 diterima"
 #print 'Hasil count : ', hasil
 bagi4 = []
 bagi3 = []
+'''
 def bagi (hasil):
     bagi = hasil.split("[")
     bagi2 = bagi[1].split("]")
@@ -58,7 +59,7 @@ def bagi (hasil):
     #print bagi3
     #print bagi3[0]
     bagi4 =bagi[2].split(",")
-
+'''
 
 #print bagi4
 
@@ -69,12 +70,25 @@ tempc1 = []
 temp1 = []
 tempc2 = []
 temp2 = []
-bagi(hasil)
+
+bagi = hasil.split("[")
+bagi2 = bagi[1].split("]")
+bagi3 = bagi2[0].split(",")
+bagi4 =bagi[2].split(", ")
+
 temp1 = bagi4
 tempc1 = [int(i) for i in bagi3]
-bagi(hasil2)
+#print temp1
+
+bagi = hasil2.split("[")
+bagi2 = bagi[1].split("]")
+bagi3 = bagi2[0].split(",")
+bagi4 =bagi[2].split(", ")
+
 temp2 = bagi4
 tempc2 = [int(i) for i in bagi3]
+#print tempc1
+#print tempc2
 
 lentemp1 = len(temp1)
 lentemp2 = len(temp2)
@@ -113,6 +127,7 @@ for i, (name, grade) in enumerate(zip(tempc1,temp1)):
         data3 = fmt % (i+1, name, grade)
         print data3
         hitung = hitung +1
+
 print "[v] Done"
 
 
