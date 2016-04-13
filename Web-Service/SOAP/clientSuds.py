@@ -4,8 +4,8 @@ from suds.client import Client
 import re
 import collections
 
-client = Client('http://192.168.88.64:8888/Calculator/soap/description')
-client2 = Client('http://192.168.88.32:8888/Calculator/soap/description')
+client = Client('http://192.168.88.64:8888/LogCron/soap/description')
+client2 = Client('http://192.168.88.32:8888/LogCron/soap/description')
 
 hasil = client.service.count('cron')
 hasil = client.service.count('cron.1')

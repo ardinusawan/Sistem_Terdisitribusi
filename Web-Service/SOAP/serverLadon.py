@@ -19,10 +19,7 @@ nama_server = "DWI_SERVER"
 
 
 
-class Calculator(object):
-    @ladonize(float, rtype=float)
-    def ceiler(self, a):
-        return math.ceil(a)
+class LogCron(object):
 
     @ladonize(str, rtype=str)
     def count(self, ofile):
