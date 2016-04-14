@@ -8,17 +8,6 @@ import urllib2
 
 app = Flask(__name__)
 
-
-
-<<<<<<< HEAD:Web-Service/RESTful/app.py
-nama_server = "ManServer"
-
-@app.route("/")
-def smanager():
-    server = "http://localhost:5001/"
-    req = urllib2.Request(server)
-    response = urllib2.urlopen(req)
-=======
 nama_server = "DWI_SERVER"
 
 def count(ofile):
@@ -163,7 +152,6 @@ tasks2 = [
 def hello_world():
     lol =123
     return jsonify(message = tasks2)
->>>>>>> e34af5aaa620cefa09ef32cddd36a21af0dfea99:Web-Service/RESTful/Server/app.py
 
 if __name__ == "__main__":
-   app.run(host='localhost', port=5000)
+   app.run(host='192.168.88.64', port=5000)

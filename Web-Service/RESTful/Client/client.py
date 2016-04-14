@@ -1,7 +1,8 @@
 __author__ = 'Indra Gunawan'
 import json
 import urllib2
-
+import time
+start_time = time.time()
 
 server = "http://localhost:5000/"
 server2 = "http://192.168.3.0:5000/"
@@ -12,7 +13,7 @@ response2 = urllib2.urlopen(server2)
 data = json.load(response)
 data2 = json.load(response2)
 lol = data["message"][0]["hasil17"]
-lol2 = data2["message"][0]["hasil7"]
+lol2 = data2["message"][0]["hasil17"]
 print lol
 print "[v] response dari server-server mulai diranking"
 tempc1 = []
@@ -78,4 +79,4 @@ for i, (name, grade) in enumerate(zip(tempc1,temp1)):
         hitung = hitung +1
 
 print "[v] Done"
-
+print("--- %s seconds ---" % (time.time() - start_time))

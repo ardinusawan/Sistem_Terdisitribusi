@@ -3,6 +3,8 @@ __author__ = 'Indra Gunawan'
 from suds.client import Client
 import re
 import collections
+import time
+start_time = time.time()
 
 client = Client('http://192.168.88.64:8888/LogCron/soap/description')
 client2 = Client('http://192.168.88.32:8888/LogCron/soap/description')
@@ -130,4 +132,4 @@ for i, (name, grade) in enumerate(zip(tempc1,temp1)):
 
 print "[v] Done"
 
-
+print("--- %s seconds ---" % (time.time() - start_time))

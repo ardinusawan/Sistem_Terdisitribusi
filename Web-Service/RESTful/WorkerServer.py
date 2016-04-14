@@ -15,7 +15,7 @@ tempoftimec = []
 hit = 0
 flag = 0
 
-nama_server = "S1"
+nama_server = "S2"
 
 def count(ofile):
     global folder_hasil_computasi, flag, temp3, hit, tempc, tempoftemp, tempoftimec
@@ -82,18 +82,19 @@ def count(ofile):
 
 @app.route("/")
 def smanager():
-    for i in range(0,3):
+    for i in range(17,34):
         if (i==0):
             fname="cron"
         else:
-            fname="cron."+i
-        if(i==2):
+            fname="cron."+str(i)
+        print "counting "+ fname
+        if(i==33):
             s1 = count(fname)
         else:
             count(fname)
-    print "Done Server xx"
+    print "Done 02 Done"
     return s1
             
 
 if __name__ == "__main__":
-   app.run(host='xxx.xxx.xxx.xxx')
+   app.run(host='192.168.88.64', debug=True)
