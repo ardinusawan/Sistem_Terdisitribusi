@@ -162,25 +162,25 @@ print "Starting pp with", job_server.get_ncpus(), "workers"
 # ("math",) - tuple with module names which must be imported before sum_primes execution
 # Execution starts as soon as one of the workers will become available
 #job1 = job_server.submit(sum_primes, (100,), (isprime,), ("math",))
-job1 = job_server.submit(count, ("cron",), depfuncs=(), modules=("re","collections",))
+#job1 = job_server.submit(count, ("cron",), depfuncs=(), modules=("re","collections",))
 
 # Retrieves the result calculated by job1
 # The value of job1() is the same as sum_primes(100)
 # If the job has not been finished yet, execution will wait here until result is available
-result = job1()
-print result
+#result = job1()
+#print result
 
-print "Hasilnya adalah", result
+#print "Hasilnya adalah", result
 
 start_time = time.time()
 
 # The following submits 8 jobs and then retrieves the results
-'''
+
 inputs = ("cron", "cron.1", "cron.2", "cron.3", "cron.4", "cron.5", "cron.6", "cron.7")
-jobs = [(input, job_server.submit(count,(input,), (), ("collections","re",))) for input in inputs]
+jobs = [(input, job_server.submit(count,(input,), depfuncs=(), modules=("re","collections",))) for input in inputs]
 for input, job in jobs:
-    print "Sum of primes below", input, "is", job()
-'''
+    print "hasilnya ", input, "adalah", job()
+
 
 print "Time elapsed: ", time.time() - start_time, "s"
 job_server.print_stats()
