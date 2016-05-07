@@ -139,8 +139,8 @@ else:
     # Creates jobserver with automatically detected number of workers
     job_server = pp.Server(ppservers=ppservers)
 
-print "Starting pp with", job_server.set_ncpus(0), "workers"
-print "Starting pp with", job_server.get_ncpus(), "workers"
+#print "Starting pp with", job_server.set_ncpus(0), "workers"
+#print "Starting pp with", job_server.get_ncpus(), "workers"
 
 # Submit a job of calulating sum_primes(100) for execution.
 # sum_primes - the function
@@ -177,31 +177,31 @@ file3 = open('cron.3')
 str3 = str(file3.read())
 file3.close()
 
-file4 = open('cron.4')
-str4 = str(file4.read())
-file4.close()
+#perulangan untuk cron 0 sampai 7
+for input in range (1, 8):
+    #print input
+    if input == 1 :
+        file = open('cron')
+        str1 = str(file.read())
+        file.close()
+        job = job_server.submit(count, (str1,), depfuncs=(), modules=("re","collections",))
+        print "proses hasilnya adalah", job()
+    else :
+        pls = str(input-1)
+        file = open('cron.'+pls)
+        str1 = str(file.read())
+        file.close()
+        job = job_server.submit(count, (str1,), depfuncs=(), modules=("re","collections",))
+        print "proses hasilnya adalah", job()
 
-file5 = open('cron.5')
-str5 = str(file5.read())
-file5.close()
+'''
+inputs = [str0, str1, str2, str3, str4]
+job1 = [(input, job_server.submit(count,(input,), depfuncs=(), modules=("re","collections",))) for input in inputs]
+#result = job1()
+for input, job in job1:
+    print "proses hasilnya adalah", job()
 
-file6 = open('cron.6')
-str6 = str(file6.read())
-file6.close()
-
-file7 = open('cron.7')
-str7 = str(file7.read())
-file7.close()
-
-
-job1 = job_server.submit(count, (str0,), depfuncs=(), modules=("re","collections",))
-result = job1()
-print result
-
-job2 = job_server.submit(count, (str1,), depfuncs=(), modules=("re","collections",))
-result = job2()
-print result
-
+'''
 # The following submits 8 jobs and then retrieves the results
 '''
 inputs = (str0)

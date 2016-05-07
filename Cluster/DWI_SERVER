@@ -8,12 +8,12 @@
 7       7                   (mailman) CMD (/usr/bin/python -S /var/mailman/cron/disabled)
 8       6                   (mailman) CMD (/usr/bin/python -S /var/mailman/cron/nightly_gzip)
 9       6                   (root) CMD (run-parts /etc/cron.daily)
-10      1                   (Updated timestamp for job `cron.weekly' to 2005-12-18
-11      1                   (Updated timestamp for job `cron.daily' to 2005-12-19
-12      1                   (Updated timestamp for job `cron.daily' to 2005-12-22
-13      1                   (Updated timestamp for job `cron.daily' to 2005-12-21
-14      1                   (Updated timestamp for job `cron.daily' to 2005-12-20
-15      1                   (Updated timestamp for job `cron.daily' to 2005-12-24
-16      1                   (Updated timestamp for job `cron.daily' to 2005-12-23
-17      1                   (mailman) CMD (/usr/bin/python -S /var/mailman/cron/
-18      1                   (root) CMD (run-parts /etc/cron.weekly)
+10      1                   (Updated timestamp for job `cron.daily' to 2005-12-17
+11      1                   (Updated timestamp for job `cron.daily' to 2005-12-14
+12      1                   (Updated timestamp for job `cron.daily' to 2005-12-15
+13      1                   (Updated timestamp for job `cron.daily' to 2005-12-12
+14      1                   (Updated timestamp for job `cron.daily' to 2005-12-13
+15      1                   (Updated timestamp for job `cron.weekly' to 2005-12-11
+16      1                   (mailman) CMD (/usr/bin/python -S /var/mailman/cron/
+17      1                   (root) CMD (run-parts /etc/cron.weekly)
+18      1                   (Updated timestamp for job `cron.daily' to 2005-12-16
