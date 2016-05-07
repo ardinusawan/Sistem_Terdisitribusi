@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://D:/Cobarest/.idea/Cobarest.iml" filepath="D:/Cobarest/.idea/Cobarest.iml" />
       <module fileurl="file://$PROJECT_DIR$/.idea/Sistem_Terdisitribusi.iml" filepath="$PROJECT_DIR$/.idea/Sistem_Terdisitribusi.iml" />
     </modules>
   </component>

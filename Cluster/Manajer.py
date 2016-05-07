@@ -178,21 +178,98 @@ str3 = str(file3.read())
 file3.close()
 
 #perulangan untuk cron 0 sampai 7
-for input in range (1, 8):
-    #print input
-    if input == 1 :
+for input in range (0, 8):
+
+    print input
+    if input == 0 :
         file = open('cron')
         str1 = str(file.read())
         file.close()
         job = job_server.submit(count, (str1,), depfuncs=(), modules=("re","collections",))
-        print "proses hasilnya adalah", job()
+        # print "proses hasilnya adalah", job()
+        tempc1 = []
+        temp1 = []
+
+        bagi = job().split("[")
+        bagi2 = bagi[1].split("]")
+        bagi3 = bagi2[0].split(",")
+        bagi4 =bagi[2].split(", ")
+
+        temp1 = bagi4
+        tempc1 = [int(i) for i in bagi3]
+
+        lentemp1 = len(temp1)
+        for i in range(lentemp1):
+            for j in range(lentemp1):
+
+                if tempc1[i] > tempc1[j]:
+                    tempoftemp = temp1[i]
+                    tempoftempc = tempc1[i]
+                    temp1[i] = temp1[j]
+                    tempc1[i] = tempc1[j]
+                    temp1[j] = tempoftemp
+                    tempc1[j] = tempoftempc
+
+        fmt = '%-8s%-20s%s'
+        print(fmt % ('',  'Frequent','Command'))
+        hitung = 0
+
+        for i, (name, grade) in enumerate(zip(tempc1,temp1)):
+            #print(fmt % (i, name, grade))
+            if hitung != 10 :
+                data3 = fmt % (i+1, name, grade)
+                print data3
+                hitung = hitung +1
+
+        print "[v] Done"
     else :
-        pls = str(input-1)
+        pls = str(input)
         file = open('cron.'+pls)
         str1 = str(file.read())
         file.close()
         job = job_server.submit(count, (str1,), depfuncs=(), modules=("re","collections",))
-        print "proses hasilnya adalah", job()
+        # print "proses hasilnya adalah", job()
+
+        tempc1 = []
+        temp1 = []
+
+        bagi = job().split("[")
+        bagi2 = bagi[1].split("]")
+        bagi3 = bagi2[0].split(",")
+        bagi4 =bagi[2].split(", ")
+
+        temp1 = bagi4
+        tempc1 = [int(i) for i in bagi3]
+
+        lentemp1 = len(temp1)
+        for i in range(lentemp1):
+            for j in range(lentemp1):
+
+                if tempc1[i] > tempc1[j]:
+                    tempoftemp = temp1[i]
+                    tempoftempc = tempc1[i]
+                    temp1[i] = temp1[j]
+                    tempc1[i] = tempc1[j]
+                    temp1[j] = tempoftemp
+                    tempc1[j] = tempoftempc
+
+        fmt = '%-8s%-20s%s'
+        print(fmt % ('',  'Frequent','Command'))
+        hitung = 0
+
+        for i, (name, grade) in enumerate(zip(tempc1,temp1)):
+            #print(fmt % (i, name, grade))
+            if hitung != 10 :
+                data3 = fmt % (i+1, name, grade)
+                print data3
+                hitung = hitung +1
+
+        print "[v] Done"
+
+
+
+
+
 
 '''
 inputs = [str0, str1, str2, str3, str4]
