@@ -1,4 +1,5 @@
 __author__ = 'Indra Gunawan'
+__author__ = 'Dwi Pratama'
 
 import math, sys, time
 import pp
@@ -39,10 +40,8 @@ hit = 0
 flag = 0
 '''
 
-
-
-
 def count(ofile):
+    print "memroses " + ofile
     #global folder_hasil_computasi, flag, temp3, hit, tempc, tempoftemp, tempoftimec
     temp3 = []
     tempc = []
@@ -121,13 +120,12 @@ def count(ofile):
             cek = 0
     #p = Page()
     #p.content = [None]*100
+
+    #memasukkan data ke file nama_server
     buka2 = open(ofile)
     fmt = '%-8s%-20s%s'
-    # print(fmt % ('',  'Frequent','Command'))
     fole = open(nama_server, 'w')
-    # fole = open(folder_hasil_computasi +  "server1.txt", 'w')
     for i, (name, grade) in enumerate(zip(tempc, temp3)):
-        # print(fmt % (i, name, grade))
         data3 = fmt % (i, name, grade)
         #p.content.append(tempc[i])
         # print data3
@@ -138,12 +136,11 @@ def count(ofile):
     coba = str(tempc)
     coba2 = str(temp3)
     coba3 = coba + coba2
-    #print tempc
     return coba3
 
 # tuple of all parallel python servers to connect with
 #ppservers = ()
-ppservers = ("*",)
+ppservers = ("*","192.168.0.20")
 
 if len(sys.argv) > 1:
     ncpus = int(sys.argv[1])
@@ -176,10 +173,17 @@ start_time = time.time()
 
 # The following submits 8 jobs and then retrieves the results
 
-inputs = ("cron", "cron.1", "cron.2", "cron.3", "cron.4", "cron.5", "cron.6", "cron.7")
+inputs = ("cron", "cron.1", "cron.2", "cron.3", "cron.4", "cron.5", "cron.6")
 jobs = [(input, job_server.submit(count,(input,), depfuncs=(), modules=("re","collections",))) for input in inputs]
 for input, job in jobs:
     print "hasilnya ", input, "adalah", job()
+    result = job()
+    splitter = result.split("[")
+    splitter2 = splitter[1].split("]")
+    splitter3 = splitter2[0].split(",")
+    splitter4 = splitter[2].split(", ")
+    print "hasilnya split log adalah", splitter4
+    print "hasilnya split count adalah", splitter3
 
 
 print "Time elapsed: ", time.time() - start_time, "s"
