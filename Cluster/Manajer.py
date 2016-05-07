@@ -1,10 +1,9 @@
 __author__ = 'Indra Gunawan'
-__author__ = 'Dwi Pratama'
 
 import math, sys, time
 import pp
 import re
-import collections
+import collections, string
 
 def isprime(n):
     """Returns True if n is prime and False otherwise"""
@@ -31,17 +30,8 @@ print """Usage: python sum_primes.py [ncpus]
     if omitted it will be set to the number of processors in the system
 """
 
-'''
-temp3 = []
-tempc = []
-tempoftemp = []
-tempoftimec = []
-hit = 0
-flag = 0
-'''
 
 def count(ofile):
-    print "memroses " + ofile
     #global folder_hasil_computasi, flag, temp3, hit, tempc, tempoftemp, tempoftimec
     temp3 = []
     tempc = []
@@ -55,7 +45,13 @@ def count(ofile):
     # folder_log="Log/"
 
     # ofile = folder_log + ofile
-    buka = open(ofile)
+    #print ofile
+
+    isfile = open("isi.txt","wb")
+    isfile.writelines(ofile)
+    isfile.close()
+
+    buka = open("isi.txt")
     for i, line in enumerate(buka):
         lol = re.split("\W+", line, 8)
         temp1.append('(' + lol[8])
@@ -76,18 +72,7 @@ def count(ofile):
     f.close()
     # tempoftemp.append([temp2, temp_count])
     # buka2 = open(ofile)
-    '''
-    fmt = '%-8s%-20s%s'
-    print(fmt % ('',  'Frequent','Command'))
-    fole = open("server1.txt", 'a')
-    for i, (name, grade) in enumerate(zip(temp_count,temp2)):
-        #print(fmt % (i, name, grade))
-        data3 = fmt % (i, name, grade)
-        #print data3
-        fole.write(data3+"\n")
 
-    buka2.close()
-    '''
     if hit == 0:
         temp3 = temp2
         tempc = temp_count
@@ -120,27 +105,31 @@ def count(ofile):
             cek = 0
     #p = Page()
     #p.content = [None]*100
-
-    #memasukkan data ke file nama_server
-    buka2 = open(ofile)
+    #buka2 = open(ofile)
     fmt = '%-8s%-20s%s'
+    # print(fmt % ('',  'Frequent','Command'))
     fole = open(nama_server, 'w')
+    # fole = open(folder_hasil_computasi +  "server1.txt", 'w')
     for i, (name, grade) in enumerate(zip(tempc, temp3)):
+        # print(fmt % (i, name, grade))
         data3 = fmt % (i, name, grade)
         #p.content.append(tempc[i])
         # print data3
         fole.write(data3 + "\n")
 
-    buka2.close()
+    #buka2.close()
     fole.close()
     coba = str(tempc)
     coba2 = str(temp3)
     coba3 = coba + coba2
+    #print tempc
     return coba3
+
+    #return ofile
 
 # tuple of all parallel python servers to connect with
 #ppservers = ()
-ppservers = ("*","192.168.0.20")
+ppservers = ("*",)
 
 if len(sys.argv) > 1:
     ncpus = int(sys.argv[1])
@@ -150,6 +139,7 @@ else:
     # Creates jobserver with automatically detected number of workers
     job_server = pp.Server(ppservers=ppservers)
 
+print "Starting pp with", job_server.set_ncpus(0), "workers"
 print "Starting pp with", job_server.get_ncpus(), "workers"
 
 # Submit a job of calulating sum_primes(100) for execution.
@@ -171,20 +161,54 @@ print "Starting pp with", job_server.get_ncpus(), "workers"
 
 start_time = time.time()
 
-# The following submits 8 jobs and then retrieves the results
+file0 = open('cron')
+str0 = str(file0.read())
+file0.close()
 
-inputs = ("cron", "cron.1", "cron.2", "cron.3", "cron.4", "cron.5", "cron.6")
+file1 = open('cron.1')
+str1 = str(file1.read())
+file1.close()
+
+file2 = open('cron.2')
+str2 = str(file2.read())
+file2.close()
+
+file3 = open('cron.3')
+str3 = str(file3.read())
+file3.close()
+
+file4 = open('cron.4')
+str4 = str(file4.read())
+file4.close()
+
+file5 = open('cron.5')
+str5 = str(file5.read())
+file5.close()
+
+file6 = open('cron.6')
+str6 = str(file6.read())
+file6.close()
+
+file7 = open('cron.7')
+str7 = str(file7.read())
+file7.close()
+
+
+job1 = job_server.submit(count, (str0,), depfuncs=(), modules=("re","collections",))
+result = job1()
+print result
+
+job2 = job_server.submit(count, (str1,), depfuncs=(), modules=("re","collections",))
+result = job2()
+print result
+
+# The following submits 8 jobs and then retrieves the results
+'''
+inputs = (str0)
 jobs = [(input, job_server.submit(count,(input,), depfuncs=(), modules=("re","collections",))) for input in inputs]
 for input, job in jobs:
-    print "hasilnya ", input, "adalah", job()
-    result = job()
-    splitter = result.split("[")
-    splitter2 = splitter[1].split("]")
-    splitter3 = splitter2[0].split(",")
-    splitter4 = splitter[2].split(", ")
-    print "hasilnya split log adalah", splitter4
-    print "hasilnya split count adalah", splitter3
-
+    print "proses hasilnya adalah", job()
+'''
 
 print "Time elapsed: ", time.time() - start_time, "s"
 job_server.print_stats()
