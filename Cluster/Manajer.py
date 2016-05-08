@@ -177,6 +177,9 @@ file3 = open('cron.3')
 str3 = str(file3.read())
 file3.close()
 
+tempc1 = []
+temp1 = []
+
 #perulangan untuk cron 0 sampai 7
 for input in range (0, 8):
 
@@ -187,8 +190,6 @@ for input in range (0, 8):
         file.close()
         job = job_server.submit(count, (str1,), depfuncs=(), modules=("re","collections",))
         # print "proses hasilnya adalah", job()
-        tempc1 = []
-        temp1 = []
 
         bagi = job().split("[")
         bagi2 = bagi[1].split("]")
@@ -197,18 +198,6 @@ for input in range (0, 8):
 
         temp1 = bagi4
         tempc1 = [int(i) for i in bagi3]
-
-        lentemp1 = len(temp1)
-        for i in range(lentemp1):
-            for j in range(lentemp1):
-
-                if tempc1[i] > tempc1[j]:
-                    tempoftemp = temp1[i]
-                    tempoftempc = tempc1[i]
-                    temp1[i] = temp1[j]
-                    tempc1[i] = tempc1[j]
-                    temp1[j] = tempoftemp
-                    tempc1[j] = tempoftempc
 
         fmt = '%-8s%-20s%s'
         print(fmt % ('',  'Frequent','Command'))
@@ -230,16 +219,29 @@ for input in range (0, 8):
         job = job_server.submit(count, (str1,), depfuncs=(), modules=("re","collections",))
         # print "proses hasilnya adalah", job()
 
-        tempc1 = []
-        temp1 = []
-
         bagi = job().split("[")
         bagi2 = bagi[1].split("]")
         bagi3 = bagi2[0].split(",")
         bagi4 =bagi[2].split(", ")
 
-        temp1 = bagi4
-        tempc1 = [int(i) for i in bagi3]
+        tempLog = bagi4
+        tempCount = [int(i) for i in bagi3]
+
+        #menggabungkan dengan temp hasil hitung dengan temp utama
+        lentemp1 = len(temp1)
+        lentemp2 = len(tempLog)
+        cek = 0
+        for i in range(lentemp2):
+            for j in range(lentemp1):
+                cek+=1
+                if tempLog[i] == temp1[j]:
+                    tempc1[j] += tempCount[i]
+                    cek = -10
+                if cek==lentemp1-1 :
+                    #print 'masuk'
+                    temp1.append(tempLog[i])
+                    tempc1.append(tempCount[i])
+            cek = 0
 
         lentemp1 = len(temp1)
         for i in range(lentemp1):
