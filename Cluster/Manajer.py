@@ -161,22 +161,6 @@ else:
 
 start_time = time.time()
 
-file0 = open('cron')
-str0 = str(file0.read())
-file0.close()
-
-file1 = open('cron.1')
-str1 = str(file1.read())
-file1.close()
-
-file2 = open('cron.2')
-str2 = str(file2.read())
-file2.close()
-
-file3 = open('cron.3')
-str3 = str(file3.read())
-file3.close()
-
 tempc1 = []
 temp1 = []
 
