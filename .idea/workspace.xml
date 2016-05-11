@@ -2,11 +2,12 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="2d26f907-06ef-42c8-805b-a05d5704b4a8" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cluster/DWI_SERVER" afterPath="$PROJECT_DIR$/Cluster/DWI_SERVER" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cluster/Manajer.py" afterPath="$PROJECT_DIR$/Cluster/Manajer.py" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/Sistem_Terdisitribusi.iml" afterPath="$PROJECT_DIR$/.idea/Sistem_Terdisitribusi.iml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cluster/cron-copy.txt" afterPath="$PROJECT_DIR$/Cluster/cron-copy.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cluster/cron.1" afterPath="$PROJECT_DIR$/Cluster/cron.1" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cluster/cron" afterPath="$PROJECT_DIR$/Cluster/cron" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/Cluster/isi.txt" afterPath="$PROJECT_DIR$/Cluster/isi.txt" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
     </list>
     <ignored path="Sistem_Terdisitribusi.iws" />
@@ -31,8 +32,8 @@
       <file leaf-file-name="Manajer.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Cluster/Manajer.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5584416">
-              <caret line="170" column="19" selection-start-line="170" selection-start-column="19" selection-end-line="170" selection-end-column="19" />
+            <state vertical-scroll-proportion="0.425974">
+              <caret line="167" column="25" selection-start-line="167" selection-start-column="25" selection-end-line="167" selection-end-column="25" />
               <folding />
             </state>
           </provider>
@@ -739,8 +740,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Cluster/Manajer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5584416">
-          <caret line="170" column="19" selection-start-line="170" selection-start-column="19" selection-end-line="170" selection-end-column="19" />
+        <state vertical-scroll-proportion="0.425974">
+          <caret line="167" column="25" selection-start-line="167" selection-start-column="25" selection-end-line="167" selection-end-column="25" />
           <folding />
         </state>
       </provider>

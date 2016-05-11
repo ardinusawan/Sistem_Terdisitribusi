@@ -165,7 +165,7 @@ tempc1 = []
 temp1 = []
 
 #perulangan untuk cron 0 sampai 7
-for input in range (0, 8):
+for input in range (0, 34):
 
     print input
     if input == 0 :
