@@ -1,6 +1,7 @@
 On windows
  cd C:/Python27/Script
  python ppserver.py -a
+python ppserver.py -da -i 10.151.62.78 -p 60000 -w 1 -k 20 -b 10.151.62.62
 
 linux
 ./ppserver.py -a

@@ -3,7 +3,7 @@ __author__ = 'Indra Gunawan'
 import math, sys, time
 import pp
 import re
-import collections, string
+import collections, string, pickle
 
 def isprime(n):
     """Returns True if n is prime and False otherwise"""
@@ -46,9 +46,14 @@ def count(ofile):
 
     # ofile = folder_log + ofile
     #print ofile
-
+    #u = pickle.loads(p0)
+    #print u
+    #print u[0]
+    u = pickle.loads(ofile)
+    bukaobj=u[0]
+    #print u[0]
     isfile = open("isi.txt","wb")
-    isfile.writelines(ofile)
+    isfile.writelines(bukaobj)
     isfile.close()
 
     buka = open("isi.txt")
@@ -123,14 +128,17 @@ def count(ofile):
     coba2 = str(temp3)
     coba3 = coba + coba2
     #print tempc
+    #print coba3
     return coba3
 
     #return ofile
 
 # tuple of all parallel python servers to connect with
 #ppservers = ()
-ppservers = ("*",)
-
+#ppservers = ("*",)
+#ppservers = ("192.168.43.207:60000","192.168.43.128:60000",)
+#ppservers = ("10.151.62.32:60000",)
+ppservers = ("10.151.62.93:60000","10.151.62.78:60000", "10.151.62.34:60000")
 if len(sys.argv) > 1:
     ncpus = int(sys.argv[1])
     # Creates jobserver with ncpus workers
@@ -139,8 +147,8 @@ else:
     # Creates jobserver with automatically detected number of workers
     job_server = pp.Server(ppservers=ppservers)
 
-#print "Starting pp with", job_server.set_ncpus(0), "workers"
-#print "Starting pp with", job_server.get_ncpus(), "workers"
+print "Starting pp with", job_server.set_ncpus(0), "workers"
+print "Starting pp with", job_server.get_ncpus(), "workers"
 
 # Submit a job of calulating sum_primes(100) for execution.
 # sum_primes - the function
@@ -161,57 +169,55 @@ else:
 
 start_time = time.time()
 
-tempc1 = []
-temp1 = []
-
-#perulangan untuk cron 0 sampai 7
+p = []
 for input in range (0, 34):
-
-    print input
+    #print input
     if input == 0 :
         file = open('cron')
         str1 = str(file.read())
         file.close()
-        job = job_server.submit(count, (str1,), depfuncs=(), modules=("re","collections",))
-        # print "proses hasilnya adalah", job()
 
-        bagi = job().split("[")
-        bagi2 = bagi[1].split("]")
-        bagi3 = bagi2[0].split(",")
-        bagi4 =bagi[2].split(", ")
-
-        temp1 = bagi4
-        tempc1 = [int(i) for i in bagi3]
-
-        fmt = '%-8s%-20s%s'
-        print(fmt % ('',  'Frequent','Command'))
-        hitung = 0
-
-        for i, (name, grade) in enumerate(zip(tempc1,temp1)):
-            #print(fmt % (i, name, grade))
-            if hitung != 10 :
-                data3 = fmt % (i+1, name, grade)
-                print data3
-                hitung = hitung +1
-
-        print "[v] Done"
+        mylist = []
+        mylist.append(str1)
+        p.append(pickle.dumps(mylist))
     else :
         pls = str(input)
         file = open('cron.'+pls)
         str1 = str(file.read())
         file.close()
-        job = job_server.submit(count, (str1,), depfuncs=(), modules=("re","collections",))
-        # print "proses hasilnya adalah", job()
 
-        bagi = job().split("[")
-        bagi2 = bagi[1].split("]")
-        bagi3 = bagi2[0].split(",")
-        bagi4 =bagi[2].split(", ")
+        mylist = []
+        mylist.append(str1)
+        p.append(pickle.dumps(mylist))
 
+tempc1 = []
+temp1 = []
+counter = 0
+
+# The following submits 8 jobs and then retrieves the results
+
+#inputs = (p0, p1, p2, p3, p4, p5, p6, p7, p8, p9, p10, p11, p12, p13, p14, p15, p16, p17, p18)
+inputs = (p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7], p[8], p[9], p[10], p[11], p[12], p[13], p[14], p[15], p[16], p[17], p[18], p[19], p[20], p[21], p[22], p[23], p[24], p[25], p[26], p[27], p[28], p[29], p[30], p[31], p[32], p[33])
+#print inputs
+
+jobs = [(input, job_server.submit(count,(input,), depfuncs=(), modules=("re","collections","pickle",))) for input in inputs]
+job_server.wait()
+for input, job in jobs:
+    print "proses hasilnya adalah", job()
+    bagi = job().split("[")
+    bagi2 = bagi[1].split("]")
+    bagi3 = bagi2[0].split(",")
+    bagi4 =bagi[2].split(", ")
+    #job_server.destroy()
+    if counter == 0:
+        temp1 = bagi4
+        tempc1 = [int(i) for i in bagi3]
+        counter+=1
+    else:
         tempLog = bagi4
         tempCount = [int(i) for i in bagi3]
 
-        #menggabungkan dengan temp hasil hitung dengan temp utama
+    #menggabungkan dengan temp hasil hitung dengan temp utama
         lentemp1 = len(temp1)
         lentemp2 = len(tempLog)
         cek = 0
@@ -239,39 +245,21 @@ for input in range (0, 34):
                     temp1[j] = tempoftemp
                     tempc1[j] = tempoftempc
 
-        fmt = '%-8s%-20s%s'
-        print(fmt % ('',  'Frequent','Command'))
-        hitung = 0
 
-        for i, (name, grade) in enumerate(zip(tempc1,temp1)):
-            #print(fmt % (i, name, grade))
-            if hitung != 10 :
-                data3 = fmt % (i+1, name, grade)
-                print data3
-                hitung = hitung +1
+#job_server.destroy()
 
-        print "[v] Done"
+fmt = '%-8s%-20s%s'
+print(fmt % ('',  'Frequent','Command'))
+hitung = 0
 
+for i, (name, grade) in enumerate(zip(tempc1,temp1)):
+    #print(fmt % (i, name, grade))
+    if hitung != 10 :
+        data3 = fmt % (i+1, name, grade)
+        print data3
+        hitung = hitung +1
 
-
-
-
-
-'''
-inputs = [str0, str1, str2, str3, str4]
-job1 = [(input, job_server.submit(count,(input,), depfuncs=(), modules=("re","collections",))) for input in inputs]
-#result = job1()
-for input, job in job1:
-    print "proses hasilnya adalah", job()
-
-'''
-# The following submits 8 jobs and then retrieves the results
-'''
-inputs = (str0)
-jobs = [(input, job_server.submit(count,(input,), depfuncs=(), modules=("re","collections",))) for input in inputs]
-for input, job in jobs:
-    print "proses hasilnya adalah", job()
-'''
+print "[v] Done"
 
 print "Time elapsed: ", time.time() - start_time, "s"
 job_server.print_stats()
